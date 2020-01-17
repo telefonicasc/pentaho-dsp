@@ -9,5 +9,4 @@ La librería reemplaza al vuelo el esquema de la base de datos por el nombre de 
   
  1. `mvn clean`  
  2. `mvn compile`  
- 3. `mvn clean d .
- ackage`
+ 3. `mvn clean package`
