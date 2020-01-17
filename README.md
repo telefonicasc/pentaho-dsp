@@ -13,5 +13,5 @@ La librería reemplaza al vuelo el esquema de la base de datos por el nombre de 
 
 # Directorios
 
- - **lib**: Almacena una copia de las librerias necesarias para el desarrollo que no se encuentran en el repositoio Maven.
+ - **lib**: Almacena una copia de las librerias necesarias para el desarrollo que no se encuentran en el repositorio Maven.
  - **src**: Almacena el cógido java
