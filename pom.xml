@@ -60,6 +60,11 @@
             <name>pentaho-repo</name>
             <url>https://public.nexus.pentaho.org/content/groups/omni/</url>
         </repository>
+	<!-- Local repo for files not hosted in public maven repos -->
+        <repository>
+            <id>local-maven-repo</id>
+            <url>file:///${project.parent.basedir}/lib</url>
+        </repository>
     </repositories>
 
     <dependencies>
