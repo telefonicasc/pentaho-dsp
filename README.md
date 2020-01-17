@@ -20,7 +20,7 @@ Para generar el fichero `.jar` únicamente es necesario ejecutar los siguientes 
 
 # Releases
 
-Este proyecto utiliza [Github Actions](ihttps://github.com/features/actions) para construir automáticamente un archivo jar con cada release. Para liberar una nueva versión, es necesario:
+Este proyecto utiliza [Github Actions](https://github.com/features/actions) para construir automáticamente un archivo jar con cada release. Para liberar una nueva versión, es necesario:
 
 - Modificar el número de versión en el atributo <Version> del fichero pom.xml:
 
