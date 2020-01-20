@@ -32,8 +32,8 @@ Este proyecto utiliza [Github Actions](https://github.com/features/actions) para
 - Crear un tag git con el número de versión
 
 ```bash
-git tag -a vA.B.C -m "Versión A.B.C"
+git tag -a A.B.C -m "Versión A.B.C"
 git push --tags
 ```
 
-Nótese que el número de versión **lleva un prefijo "v" en el tag git, pero no en el pom.xml**. Esto es por prácticas comunes tanto en Maven como en Git.
+El número de versión y el nombre del tag deben coincidir, para que la accion automática se complete con éxito.

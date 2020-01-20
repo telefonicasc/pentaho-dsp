@@ -20,7 +20,7 @@ name: Maven Build
 on:
   push:
     tags:
-    - 'v*'
+    - '[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   build:
@@ -54,7 +54,7 @@ jobs:
     # Get tag name. strip the initial "v"
     - name: Get Version
       id: get_version
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
     # Upload compiled jar to the release
     - name: Upload Asset
