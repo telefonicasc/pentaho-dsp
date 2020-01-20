@@ -51,7 +51,7 @@ jobs:
         draft: false
         prerelease: false
 
-    # Get tag name. strip the initial "v"
+    # Get tag name.
     - name: Get Version
       id: get_version
       run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
@@ -67,3 +67,4 @@ jobs:
         asset_path: ./target/pentaho-dsp-${{ steps.get_version.outputs.VERSION }}.jar
         asset_name: pentaho-dsp-${{ steps.get_version.outputs.VERSION }}.jar
         asset_content_type: application/java-archive
+
