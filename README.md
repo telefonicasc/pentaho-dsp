@@ -28,7 +28,7 @@ Este proyecto utiliza [Github Actions](https://github.com/features/actions) para
 <version>A.B.C</version>
 ```
 
-- Hacer commit de los cambios
+- Hacer commit y push de los cambios
 - Crear un tag git con el número de versión
 
 ```bash
