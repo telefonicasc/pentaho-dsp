@@ -30,13 +30,10 @@ ADD hooks /opt/hooks/
 USER pentaho
 ADD . /home/pentaho
 
-# Initialize local mvn repo so that the .jar can be built offline
-RUN cd /home/pentaho && \
-    mvn -B initialize && \
-    mvn -B dependency:go-offline
+# Initialize local mvn repo and go offline, so we don't need Internet
+# access in the destination machine.
+RUN cd /home/pentaho && mvn -B initialize && mvn -B dependency:go-offline
 
-# dependency:go-offline is not enough,
-# we have to build the package to download the jars.
-RUN cd /home/pentaho && \
-    mvn -B package && \
-    mvn -B clean
+# dependency:go-offline is not enough, it won't download all jars.
+# we have to build the package to make sure to get them.
+RUN cd /home/pentaho && mvn -B package && mvn -B clean
