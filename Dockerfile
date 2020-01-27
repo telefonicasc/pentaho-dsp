@@ -28,12 +28,5 @@ ADD hooks /opt/hooks/
 
 # Add source code to /home/pentaho
 USER pentaho
-ADD . /home/pentaho
+ADD src /home/pentaho/src
 
-# Initialize local mvn repo and go offline, so we don't need Internet
-# access in the destination machine.
-RUN cd /home/pentaho && mvn -B initialize && mvn -B dependency:go-offline
-
-# dependency:go-offline is not enough, it won't download all jars.
-# we have to build the package to make sure to get them.
-RUN cd /home/pentaho && mvn -B package && mvn -B clean

@@ -21,34 +21,15 @@
 
 set -eoux pipefail
 
-# Replace dependencies in the POM file, with the actual versions
-echo "ACTUALIZANDO dependencias de pentaho-dsp"
-cd /home/pentaho; cp pom.xml pom.new.xml
-for DEPENDENCY in mondrian pentaho-platform-core pentaho-platform-api; do
+export LIBDIR="${PENTAHO_HOME}/tomcat/webapps/pentaho/WEB-INF/lib"
+if [ -f "${LIBDIR}/pentaho-dsp.jar" ]; then
+  exit 0
+fi
 
-  # Locate the .jar file
-  export FILES=(${PENTAHO_HOME}/tomcat/webapps/pentaho/WEB-INF/lib/${DEPENDENCY}-*.jar)
-  export FILE=${FILES[0]}
+echo "COMPILANDO pentaho-dsp.jar"
+cd /home/pentaho; mkdir dist
+find src -name "*.java" | xargs javac -d ./dist -cp "${LIBDIR}/*"
+cd dist; jar cvf pentaho-dsp.jar org
 
-  # Isolate the version number
-  export BASE=`basename "${FILE}" .jar`
-  export VERSION=${BASE#"${DEPENDENCY}-"}
-  
-  # And feed the parameters into the POM
-  xsltproc --stringparam dependency "${DEPENDENCY}" \
-	   --stringparam path "${FILE}" \
-	   --stringparam version "${VERSION}" \
-	   -o pom.modified.xml \
-	   /opt/hooks/pentaho-dsp.xsl pom.new.xml && \
-  mv -f pom.modified.xml pom.new.xml
-
-done
-
-# Now, recompile with the proper version of the pentaho libs
-echo "COMPILANDO pentaho-dsp offline"
-/usr/local/bin/mvn -o -q -B --file pom.new.xml initialize
-/usr/local/bin/mvn -o -q -B --file pom.new.xml package
-
-# And move to the proper location
-echo "INSTALANDO libreria pentaho-dsp en WEB-INF/lib"
-mv target/pentaho-dsp-*.jar "${PENTAHO_HOME}/tomcat/webapps/pentaho/WEB-INF/lib/pentaho-dsp.jar"
+echo "INSTALANDO pentaho-dsp.jar"
+mv pentaho-dsp.jar "${LIBDIR}/"
