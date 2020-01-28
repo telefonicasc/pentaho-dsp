@@ -37,3 +37,17 @@ git push --tags
 ```
 
 El número de versión y el nombre del tag deben coincidir, para que la accion automática se complete con éxito.
+
+# Docker
+
+Adicionalmente, a partir de este repositorio se puede construir una imagen base conteniendo openjdk 8 y todas las dependencias necesarias para ejecutar Pentaho 8 CE, incluyendo este código. La imagen puede construirse con:
+
+```bash
+docker build --rm -t pentaho-env:latest .
+```
+
+Una vez construida, el siguiente comando muestra las instrucciones para utilizar dicha imagen:
+
+```bash
+docker run --rm pentaho-env:latest cat /opt/usage.txt
+```

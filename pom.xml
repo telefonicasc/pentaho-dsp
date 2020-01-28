@@ -59,7 +59,7 @@
                 <executions>
                     <execution>
                         <phase>initialize</phase>
-			<goals><goal>install-file</goal></goals>
+                        <goals><goal>install-file</goal></goals>
                         <id>mondrian</id>
                         <configuration>
                             <file>lib/mondrian-3.0.jar</file>
