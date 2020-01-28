@@ -17,6 +17,7 @@ Para generar el fichero `.jar` únicamente es necesario ejecutar los siguientes 
 
  - **lib**: Almacena una copia de las librerias necesarias para el desarrollo que no se encuentran en el repositorio Maven.
  - **src**: Almacena el código java
+ - **hooks**: Almacena los scripts de configuración para la imagen Docker
 
 # Releases
 
@@ -40,7 +41,14 @@ El número de versión y el nombre del tag deben coincidir, para que la accion a
 
 # Docker
 
-Adicionalmente, a partir de este repositorio se puede construir una imagen base conteniendo openjdk 8 y todas las dependencias necesarias para ejecutar Pentaho 8 CE, incluyendo este código. La imagen puede construirse con:
+Adicionalmente, a partir de este repositorio se puede construir una imagen base conteniendo openjdk 8 y todas las dependencias necesarias para ejecutar Pentaho 8 CE, incluyendo este código.
+
+Esta imagen incluye dos personalizaciones sobre la imagen base, añadidas en forma de scripts de configuración en la carpeta **hooks**:
+
+- **hooks/pentaho-dsp.sh**: Garantiza que la versión de pentaho-dsp.jar instalada es compatible con las librerías incluidas en el volumen de Pentaho.
+- **hooks/url-auth.sh**: Permite incluir widgets de Pentaho en iframes.
+
+La imagen puede construirse con:
 
 ```bash
 docker build --rm -t pentaho-env:latest .
