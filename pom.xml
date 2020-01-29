@@ -28,7 +28,7 @@
 
     <groupId>org.telefonica.urbo2</groupId>
     <artifactId>pentaho-dsp</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,10 +62,10 @@
                         <goals><goal>install-file</goal></goals>
                         <id>mondrian</id>
                         <configuration>
-                            <file>lib/mondrian-3.0.jar</file>
+                            <file>lib/mondrian-8.3.0.0-371.jar</file>
                             <groupId>mondrian</groupId>
                             <artifactId>mondrian</artifactId>
-                            <version>3.0</version>
+                            <version>8.3.0.0-371</version>
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
@@ -74,10 +74,10 @@
                         <goals><goal>install-file</goal></goals>
                         <id>pentaho-platform-core</id>
                         <configuration>
-                            <file>lib/pentaho-platform-core-8.2.0.0-342.jar</file>
+                            <file>lib/pentaho-platform-core-8.3.0.0-371.jar</file>
                             <groupId>pentaho</groupId>
                             <artifactId>pentaho-platform-core</artifactId>
-                            <version>8.2.0.0-342</version>
+                            <version>8.3.0.0-371</version>
                            <packaging>jar</packaging>
                         </configuration>
                     </execution>
@@ -86,10 +86,10 @@
                         <goals><goal>install-file</goal></goals>
                         <id>pentaho-platform-api</id>
                         <configuration>
-                            <file>lib/pentaho-platform-api-8.2.0.1-427.jar</file>
+                            <file>lib/pentaho-platform-api-8.3.0.0-371.jar</file>
                             <groupId>pentaho</groupId>
                             <artifactId>pentaho-platform-api</artifactId>
-                            <version>8.2.0.1-427</version>
+                            <version>8.3.0.0-371</version>
                             <packaging>jar</packaging>
                         </configuration>
                      </execution>
@@ -111,26 +111,26 @@
         <dependency>
             <groupId>mondrian</groupId>
             <artifactId>mondrian</artifactId>
-            <version>3.0</version>
+            <version>8.3.0.0-371</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.30</version>
+            <version>1.7.7</version>
         </dependency>
 
         <dependency>
             <groupId>pentaho</groupId>
             <artifactId>pentaho-platform-api</artifactId>
-            <version>8.2.0.1-427</version>
+            <version>8.3.0.0-371</version>
         </dependency>
 
         <dependency>
             <groupId>pentaho</groupId>
             <artifactId>pentaho-platform-core</artifactId>
-            <version>8.2.0.0-342</version>
+            <version>8.3.0.0-371</version>
         </dependency>
 
     </dependencies>
