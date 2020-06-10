@@ -11,8 +11,11 @@
 .mtj.tmp/
 
 # Editros
+.classpath
+.project
 .idea
 *.iml
+*.prefs
 
 # Compiled files
 target
