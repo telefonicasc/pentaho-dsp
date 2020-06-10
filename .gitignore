@@ -10,9 +10,13 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Editros
+# Editors
+.classpath
+.project
 .idea
+settings.json
 *.iml
+*.prefs
 
 # Compiled files
 target
