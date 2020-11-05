@@ -25,6 +25,7 @@ LABEL maintainer=telefonicasc
 # Add config hooks to /opt
 USER root
 ADD hooks /opt/hooks/
+RUN chmod 0755 /opt/hooks/*.sh
 
 # Add source code to /home/pentaho
 USER pentaho
