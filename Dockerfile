@@ -18,13 +18,14 @@
 # For those usages not covered by this license please contact with
 # sc_support at telefonica dot com
 
-FROM fivecorp/pentaho-env:v8.3.8
+FROM fivecorp/pentaho-env:v8.3.10
 
 LABEL maintainer=telefonicasc
 
 # Add config hooks to /opt
 USER root
 ADD hooks /opt/hooks/
+RUN chmod a+r /opt/hooks/* && chmod a+rx /opt/hooks/*.sh
 
 # Add source code to /home/pentaho
 USER pentaho
