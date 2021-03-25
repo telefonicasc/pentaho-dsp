@@ -28,7 +28,7 @@
 
     <groupId>org.telefonica.urbo2</groupId>
     <artifactId>pentaho-dsp</artifactId>
-    <version>1.1.4</version>
+    <version>1.1.6</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
