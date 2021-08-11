@@ -26,7 +26,6 @@ for CONFDIR in "pentaho-cdf" "pentaho-cdf-dd"; do
   if [ -f "${CONFFILE}" ]; then
     if ! (grep downloadable-formats "${CONFFILE}" | grep woff2); then
       echo "ACTIVANDO soporte de descarga de fuentes WOFF2 en ${CONFFILE}"
-      # Agrego la linea delante de la definicion del MimeType pdf, por ejemplo.
       sed -i "s/<downloadable-formats>/<downloadable-formats>woff2,/" "${CONFFILE}"
     fi
   fi
