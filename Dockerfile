@@ -18,7 +18,7 @@
 # For those usages not covered by this license please contact with
 # sc_support at telefonica dot com
 
-FROM fivecorp/pentaho-env:v8.3.11
+FROM fivecorp/pentaho-env:v8.3.12
 
 LABEL maintainer=telefonicasc
 
