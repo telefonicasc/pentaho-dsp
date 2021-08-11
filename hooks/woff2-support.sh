@@ -21,11 +21,13 @@
 
 set -eoux pipefail
 
-export CONFFILE="${PENTAHO_HOME}/pentaho-solutions/system/pentaho-cdf/settings.xml"
-if grep downloadable-formats "${CONFFILE}" | grep woff2; then
-  exit 0
-fi
-
-echo "ACTIVANDO soporte de descarga de fuentes WOFF2 en ${CONFFILE}"
-# Agrego la linea delante de la definicion del MimeType pdf, por ejemplo.
-sed -i "s/<downloadable-formats>/<downloadable-formats>woff2,/" "${CONFFILE}"
+for CONFDIR in "pentaho-cdf" "pentaho-cdf-dd"; do
+  export CONFFILE="${PENTAHO_HOME}/pentaho-solutions/system/${CONFDIR}/settings.xml"
+  if [ -f "${CONFFILE}" ]; then
+    if ! (grep downloadable-formats "${CONFFILE}" | grep woff2); then
+      echo "ACTIVANDO soporte de descarga de fuentes WOFF2 en ${CONFFILE}"
+      # Agrego la linea delante de la definicion del MimeType pdf, por ejemplo.
+      sed -i "s/<downloadable-formats>/<downloadable-formats>woff2,/" "${CONFFILE}"
+    fi
+  fi
+done
