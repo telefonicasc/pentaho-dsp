@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright 2020 Telefónica Soluciones de Informática y Comunicaciones de España, S.A.U.
 #
 # This file is part of Pentaho DSP.
@@ -18,16 +19,14 @@
 # For those usages not covered by this license please contact with
 # sc_support at telefonica dot com
 
-FROM fivecorp/pentaho-env:v8.3.12
+set -eoux pipefail
 
-LABEL maintainer=telefonicasc
-
-# Add config hooks to /opt
-USER root
-ADD hooks /opt/hooks/
-RUN chmod a+r /opt/hooks/* && chmod a+rx /opt/hooks/*.sh
-
-# Add source code to /home/pentaho
-USER pentaho
-ADD src /home/pentaho/src
-
+for CONFDIR in "pentaho-cdf" "pentaho-cdf-dd"; do
+  export CONFFILE="${PENTAHO_HOME}/pentaho-solutions/system/${CONFDIR}/settings.xml"
+  if [ -f "${CONFFILE}" ]; then
+    if ! (grep downloadable-formats "${CONFFILE}" | grep woff2); then
+      echo "ACTIVANDO soporte de descarga de fuentes WOFF2 en ${CONFFILE}"
+      sed -i "s/<downloadable-formats>/<downloadable-formats>woff2,/" "${CONFFILE}"
+    fi
+  fi
+done
