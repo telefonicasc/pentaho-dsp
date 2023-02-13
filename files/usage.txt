@@ -1,0 +1,40 @@
+To set up pentaho on premises, you need to configure its databases and schema.
+Follow these steps:
+
+1.- Download and unzip pentaho-server-ce from https://sourceforge.net/projects/pentaho/files/Pentaho%208.3/server/
+
+mkdir -p /opt/pentaho
+cd /opt/pentaho
+wget "https://downloads.sourceforge.net/project/pentaho/Pentaho%208.3/server/pentaho-server-ce-8.3.0.0-371.zip"
+unzip pentaho-server-ce-8.3.0.0-371.zip
+chown -R 1000:1000 /opt/pentaho/pentaho-server
+#   (uid 1000 is used internally in the container for pentaho service)
+
+2.- Update the volume config with the proper database settings
+
+docker run --rm -it -v /opt/pentaho/pentaho-server:/opt/pentaho-server pentaho-env /opt/config.sh <postgres_server> <postgres_port> <postgres_prefix> <new_password> <nodeid> > schema.sql
+
+Where:
+
+- postgres_server: ip address of postgres server
+- postgres_port: TCP port of postgres server
+- postgres_prefix: prefix added to the pentaho databases. E.g. if you set postgres_prefix to "iot_",
+  the pentaho databases will be iot_quartz, iot_jackrabbit and iot_hibernate.
+- new_password: db password for pentaho user
+- nodeid: if clustered, every pentaho instance must have an unique nodeid ("node1", "node2", etc)
+
+*OPTIONAL*: if you have different passwords for jackrabbit, hibernate and/or quartz users, you can specify them separately as environment variables:
+
+- JACKRABBIT_PASSWORD
+- QUARTZ_PASSWORD
+- HIBERNATE_PASSWORD
+
+For example,
+
+docker run --rm -it -v /opt/pentaho/pentaho-server:/opt/pentaho-server -e JACKRABBIT_PASSWORD=<password-for-jackrabbit> pentaho-env /opt/config.sh <postgres_server> <postgres_port> <postgres_prefix> <other_password> <nodeid> > schema.sql
+
+This command will also generate the schema.sql file with the databases and users to create in postgres.
+
+3.- Use the schema.sql file to create the proper users and databases in postgres
+
+psql -U root -p < /opt/pentaho/schema.sql
