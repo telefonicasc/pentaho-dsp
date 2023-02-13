@@ -83,7 +83,7 @@ mv -f ${CONFIG_UPDATE}/tomcat.webapps.pentaho.WEB-INF.web.xml ${PENTAHO_HOME}/to
 # Tomcat logging settings. See
 # http://forums.pentaho.com/showthread.php?189137-Log-rotation-for-Pentaho-5-3-BI-server
 mv -f ${CONFIG_UPDATE}/tomcat.conf.logging.properties ${PENTAHO_HOME}/tomcat/conf/logging.properties
-mv -f ${CONFIG_UPDATE}/tomcat.webapps.pentaho.WEB-INF.classes.log4j.xml ${PENTAHO_HOME}/tomcat/webapps/pentaho/WEB-INF/classes/log4j.xml
+mv -f ${CONFIG_UPDATE}/tomcat.webapps.pentaho.WEB-INF.classes.log4j2.xml ${PENTAHO_HOME}/tomcat/webapps/pentaho/WEB-INF/classes/log4j2.xml
 
 # Token file to prove that the configuration utility has been run
 mv -f "${CONFIG_UPDATE}/env.postgresql" "${PENTAHO_HOME}/env.postgresql"
