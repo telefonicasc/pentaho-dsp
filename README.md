@@ -41,7 +41,7 @@ El número de versión y el nombre del tag deben coincidir, para que la accion a
 
 # Docker
 
-Adicionalmente, a partir de este repositorio se puede construir una imagen base conteniendo openjdk 8 y todas las dependencias necesarias para ejecutar Pentaho 8 CE, incluyendo este código.
+Adicionalmente, a partir de este repositorio se puede construir una imagen base conteniendo openjdk 11 y todas las dependencias necesarias para ejecutar Pentaho 9 CE, incluyendo este código.
 
 Esta imagen incluye dos personalizaciones sobre la imagen base, añadidas en forma de scripts de configuración en la carpeta **hooks**:
 

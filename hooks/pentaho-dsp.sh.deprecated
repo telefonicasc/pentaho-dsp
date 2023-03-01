@@ -19,6 +19,23 @@
 # For those usages not covered by this license please contact with
 # sc_support at telefonica dot com
 
+# NOTE: The pentaho-dsp code does not work in pentaho 9.3
+# Compilation fails with errors:
+# /home/pentaho/src/main/java/org/telefonica/urbo2/ChangeTenantDynamicSchemaProcessor.java:27: error: package mondrian.olap does not exist
+# import mondrian.olap.Util;
+                    # ^
+# /home/pentaho/src/main/java/org/telefonica/urbo2/ChangeTenantDynamicSchemaProcessor.java:28: error: package mondrian.spi.impl does not exist
+# import mondrian.spi.impl.FilterDynamicSchemaProcessor;
+                        # ^
+# /home/pentaho/src/main/java/org/telefonica/urbo2/ChangeTenantDynamicSchemaProcessor.java:32: error: package org.slf4j does not exist
+# import org.slf4j.Logger;
+                # ^
+# /home/pentaho/src/main/java/org/telefonica/urbo2/ChangeTenantDynamicSchemaProcessor.java:33: error: package org.slf4j does not exist
+# import org.slf4j.LoggerFactory;
+                # ^
+# /home/pentaho/src/main/java/org/telefonica/urbo2/ChangeTenantDynamicSchemaProcessor.java:35: error: package org.pentaho.platform.api.engine does not exist
+# import org.pentaho.platform.api.engine.IPentahoSession;
+
 set -eoux pipefail
 
 export LIBDIR="${PENTAHO_HOME}/tomcat/webapps/pentaho/WEB-INF/lib"

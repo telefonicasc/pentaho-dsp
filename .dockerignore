@@ -1,0 +1,8 @@
+.github
+.settings
+.vscode
+.classpath
+.project
+target
+*.zip
+pentaho-server
