@@ -89,6 +89,11 @@ mv -f ${CONFIG_UPDATE}/tomcat.webapps.pentaho.WEB-INF.classes.log4j2.xml ${PENTA
 mv -f "${CONFIG_UPDATE}/env.postgresql" "${PENTAHO_HOME}/env.postgresql"
 chmod 0400 "${PENTAHO_HOME}/env.postgresql"
 
+# Remove user list from default login screen
+# See https://ingmmurillo-dwh-bi.blogspot.com/2014/12/como-ocultar-el-login-as-evaluator-en.html
+sed -i '/login-show-users-list/d' "${PENTAHO_HOME}/pentaho-solutions/system/pentaho.xml"
+sed -i '/login-show-sample-users-hint/d' "${PENTAHO_HOME}/pentaho-solutions/system/pentaho.xml"
+
 # Run the config hooks
 for HOOK in /opt/hooks/*.sh; do
     >&2 /bin/bash -c "$HOOK"

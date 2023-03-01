@@ -44,7 +44,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
 # Get this version from https://apr.apache.org/download.cgi
 ENV APR_VERSION 1.7.2
 RUN cd /tmp && \
-    wget "http://apache.rediris.es/apr/apr-${APR_VERSION}.tar.bz2" && \
+    DEBIAN_FRONTEND=noninteractive wget "https://dlcdn.apache.org/apr/apr-${APR_VERSION}.tar.bz2" && \
     tar -xjvf "apr-${APR_VERSION}.tar.bz2" && \
     cd "apr-${APR_VERSION}" && \
     ./configure --prefix=/usr && \
@@ -53,9 +53,9 @@ RUN cd /tmp && \
     rm -rf /tmp/*
 
 # Get this version from https://tomcat.apache.org/download-native.cgi
-ENV TCN_VERSION 1.2.35
+ENV TCN_VERSION 1.2.36
 RUN cd /tmp && \
-    wget "http://apache.rediris.es/tomcat/tomcat-connectors/native/${TCN_VERSION}/source/tomcat-native-${TCN_VERSION}-src.tar.gz" && \
+    DEBIAN_FRONTEND=noninteractive wget "https://dlcdn.apache.org/tomcat/tomcat-connectors/native/${TCN_VERSION}/source/tomcat-native-${TCN_VERSION}-src.tar.gz" && \
     tar -xzvf "tomcat-native-${TCN_VERSION}-src.tar.gz" && \
     cd "tomcat-native-${TCN_VERSION}-src/native" && \
     ./configure --prefix=/usr --with-apr=/usr \
@@ -67,7 +67,7 @@ RUN cd /tmp && \
 # C3P0 connection pool from  https://sourceforge.net/projects/c3p0/
 ENV C3P0_VERSION 0.9.5.5
 RUN cd /tmp && \
-    wget "https://sourceforge.net/projects/c3p0/files/c3p0-bin/c3p0-${C3P0_VERSION}/c3p0-${C3P0_VERSION}.bin.tgz/download" && \
+    DEBIAN_FRONTEND=noninteractive wget "https://sourceforge.net/projects/c3p0/files/c3p0-bin/c3p0-${C3P0_VERSION}/c3p0-${C3P0_VERSION}.bin.tgz/download" && \
     mv download "c3p0-${C3P0_VERSION}.tgz" && \
     tar -xzvf "c3p0-${C3P0_VERSION}.tgz" && \
     mv c3p0-${C3P0_VERSION}/lib/* /usr/local/lib && \
@@ -76,7 +76,7 @@ RUN cd /tmp && \
 # Get this version from https://logging.apache.org/log4j/
 ENV LOG4J_EXTRAS_VERSION 1.2.17
 RUN cd /tmp && \
-    wget "http://dlcdn.apache.org/logging/log4j/extras/${LOG4J_EXTRAS_VERSION}/apache-log4j-extras-${LOG4J_EXTRAS_VERSION}-bin.tar.gz" && \
+    DEBIAN_FRONTEND=noninteractive wget "http://dlcdn.apache.org/logging/log4j/extras/${LOG4J_EXTRAS_VERSION}/apache-log4j-extras-${LOG4J_EXTRAS_VERSION}-bin.tar.gz" && \
     tar -xzvf "apache-log4j-extras-${LOG4J_EXTRAS_VERSION}-bin.tar.gz" && \
     mv "apache-log4j-extras-${LOG4J_EXTRAS_VERSION}/apache-log4j-extras-${LOG4J_EXTRAS_VERSION}.jar" /usr/local/lib && \
     rm -rf /tmp/*
@@ -86,7 +86,7 @@ RUN cd /tmp && \
 # ENV MYSQL_CONN_VERSION 8.0.31
 ENV MYSQL_CONN_VERSION 5.1.49
 RUN cd /tmp && \
-    wget "https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-${MYSQL_CONN_VERSION}.tar.gz" && \
+    DEBIAN_FRONTEND=noninteractive wget "https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-${MYSQL_CONN_VERSION}.tar.gz" && \
     tar -xzvf "mysql-connector-java-${MYSQL_CONN_VERSION}.tar.gz" && \
     mv "mysql-connector-java-${MYSQL_CONN_VERSION}/mysql-connector-java-${MYSQL_CONN_VERSION}.jar" /usr/local/lib && \
     rm -rf /tmp/*
@@ -94,7 +94,7 @@ RUN cd /tmp && \
 # Get this version from https://jdbc.postgresql.org/download/
 ENV PGSQL_CONN_VERSION 42.5.2
 RUN cd /tmp && \
-    wget "https://jdbc.postgresql.org/download/postgresql-${PGSQL_CONN_VERSION}.jar" && \
+    DEBIAN_FRONTEND=noninteractive wget "https://jdbc.postgresql.org/download/postgresql-${PGSQL_CONN_VERSION}.jar" && \
     mv "postgresql-${PGSQL_CONN_VERSION}.jar" /usr/local/lib
 
 # Set environment variables for Pentaho
@@ -126,10 +126,11 @@ ENV PROXY_SCHEME http
 
 # Configuration files from Pentaho 9.4
 ADD files /opt/
+RUN find /opt -type f -iname "*.sh" -exec chmod a+x {} \;
 
 # Add config hooks to /opt
 ADD hooks /opt/hooks/
-RUN chmod a+r /opt/hooks/* && chmod a+rx /opt/hooks/*.sh
+RUN chmod a+r /opt/hooks/* && chmod a+rx /opt/hooks/*.sh && chmod a+rx /opt/*.sh
 
 USER pentaho
 # Add source code to /home/pentaho
