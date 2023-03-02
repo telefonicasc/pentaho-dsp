@@ -25,6 +25,7 @@ fi
 
 # Configuration file golden repository and scratch space
 export CONFIG_GOLDEN=/opt/config
+export CUSTOM_GOLDEN=/opt/customization
 export CONFIG_UPDATE=/tmp/scratch
 if ! [ -d "$CONFIG_UPDATE" ]; then
   mkdir -p "$CONFIG_UPDATE"
@@ -91,8 +92,10 @@ chmod 0400 "${PENTAHO_HOME}/env.postgresql"
 
 # Remove user list from default login screen
 # See https://ingmmurillo-dwh-bi.blogspot.com/2014/12/como-ocultar-el-login-as-evaluator-en.html
-sed -i '/login-show-users-list/d' "${PENTAHO_HOME}/pentaho-solutions/system/pentaho.xml"
-sed -i '/login-show-sample-users-hint/d' "${PENTAHO_HOME}/pentaho-solutions/system/pentaho.xml"
+mv -f ${CONFIG_UPDATE}/pentaho-solutions.system.pentaho.xml ${PENTAHO_HOME}/pentaho-solutions/system/pentaho.xml
+
+# Add customizations
+cp -fr "${CUSTOM_GOLDEN}"/* "${PENTAHO_HOME}"/
 
 # Run the config hooks
 for HOOK in /opt/hooks/*.sh; do
