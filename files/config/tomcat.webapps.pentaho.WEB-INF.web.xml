@@ -131,6 +131,17 @@
     <url-pattern>/i18n</url-pattern>
   </filter-mapping>
 
+  <!-- Para usar en conjunto con _TRUST_USER_ -->
+  <filter-mapping>
+    <filter-name>Proxy Trusting Filter</filter-name>
+    <url-pattern>/plugin/cda/api/doQuery</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Proxy Trusting Filter</filter-name>
+    <url-pattern>/plugin/cda/api/previewQuery</url-pattern>
+  </filter-mapping>
+
   <!--
     Filter mapping for security. Note that all objects are locked down. We
     could change this here as desired.

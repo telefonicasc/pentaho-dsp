@@ -59,3 +59,12 @@ Una vez construida, el siguiente comando muestra las instrucciones para utilizar
 ```bash
 docker run --rm pentaho-env:latest cat /opt/usage.txt
 ```
+
+# Changelog
+
+## 2.0.2
+
+- Añadido soporte a _TRUST_USER_ para acceso a CDAs. Ver:
+
+  - https://community.hitachivantara.com/communities/community-home/digestviewer/view-question?ContributedContentKey=88e0e567-7eba-4510-8075-e40fcf4a46a9&CommunityKey=e0eaa1d8-5ecc-4721-a6a7-75d4e890ee0d&tab=digestviewer
+  - https://github.com/pentaho/pentaho-platform/blob/8.0.0.0-R/assemblies/pentaho-war/src/main/webapp/WEB-INF/web.xml#L121-L131
