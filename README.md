@@ -68,3 +68,9 @@ docker run --rm pentaho-env:latest cat /opt/usage.txt
 
   - https://community.hitachivantara.com/communities/community-home/digestviewer/view-question?ContributedContentKey=88e0e567-7eba-4510-8075-e40fcf4a46a9&CommunityKey=e0eaa1d8-5ecc-4721-a6a7-75d4e890ee0d&tab=digestviewer
   - https://github.com/pentaho/pentaho-platform/blob/8.0.0.0-R/assemblies/pentaho-war/src/main/webapp/WEB-INF/web.xml#L121-L131
+<<<<<<< Updated upstream
+=======
+
+- Actualizado APR de versión 1.7.2 a version 1.7.6
+- Actualizado TCN de 1.2.36 a 1.3.1
+>>>>>>> Stashed changes

@@ -42,7 +42,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
     chown pentaho:pentaho /opt/scratch
 
 # Get this version from https://apr.apache.org/download.cgi
-ENV APR_VERSION 1.7.2
+ENV APR_VERSION 1.7.6
 RUN cd /tmp && \
     DEBIAN_FRONTEND=noninteractive wget "https://dlcdn.apache.org/apr/apr-${APR_VERSION}.tar.bz2" && \
     tar -xjvf "apr-${APR_VERSION}.tar.bz2" && \
@@ -53,7 +53,7 @@ RUN cd /tmp && \
     rm -rf /tmp/*
 
 # Get this version from https://tomcat.apache.org/download-native.cgi
-ENV TCN_VERSION 1.2.36
+ENV TCN_VERSION 1.3.1
 RUN cd /tmp && \
     DEBIAN_FRONTEND=noninteractive wget "https://dlcdn.apache.org/tomcat/tomcat-connectors/native/${TCN_VERSION}/source/tomcat-native-${TCN_VERSION}-src.tar.gz" && \
     tar -xzvf "tomcat-native-${TCN_VERSION}-src.tar.gz" && \
@@ -76,7 +76,7 @@ RUN cd /tmp && \
 # Get this version from https://logging.apache.org/log4j/
 ENV LOG4J_EXTRAS_VERSION 1.2.17
 RUN cd /tmp && \
-    DEBIAN_FRONTEND=noninteractive wget "http://dlcdn.apache.org/logging/log4j/extras/${LOG4J_EXTRAS_VERSION}/apache-log4j-extras-${LOG4J_EXTRAS_VERSION}-bin.tar.gz" && \
+    DEBIAN_FRONTEND=noninteractive wget "https://archive.apache.org/dist/logging/log4j/extras/${LOG4J_EXTRAS_VERSION}/apache-log4j-extras-${LOG4J_EXTRAS_VERSION}-bin.tar.gz" && \
     tar -xzvf "apache-log4j-extras-${LOG4J_EXTRAS_VERSION}-bin.tar.gz" && \
     mv "apache-log4j-extras-${LOG4J_EXTRAS_VERSION}/apache-log4j-extras-${LOG4J_EXTRAS_VERSION}.jar" /usr/local/lib && \
     rm -rf /tmp/*
