@@ -5,8 +5,8 @@ Follow these steps:
 
 mkdir -p /opt/pentaho
 cd /opt/pentaho
-wget "https://downloads.sourceforge.net/project/pentaho/Pentaho%208.3/server/pentaho-server-ce-8.3.0.0-371.zip"
-unzip pentaho-server-ce-8.3.0.0-371.zip
+wget "https://privatefilesbucket-community-edition.s3.us-west-2.amazonaws.com/${PENTAHO_VERSION}/ce/server/pentaho-server-ce-${PENTAHO_VERSION}.zip" -O /opt/pentaho/pentaho-server.zip"
+unzip pentaho-server.zip
 chown -R 1000:1000 /opt/pentaho/pentaho-server
 #   (uid 1000 is used internally in the container for pentaho service)
 
