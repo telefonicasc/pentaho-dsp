@@ -18,7 +18,7 @@
 # For those usages not covered by this license please contact with
 # sc_support at telefonica dot com
 
-FROM openjdk:11-jdk-slim
+FROM eclipse-temurin:11-jdk
 
 MAINTAINER telefonica
 
@@ -36,8 +36,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
       wget build-essential openssl unzip libssl-dev \
       libfreetype6 fontconfig && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    groupadd -g 1000 pentaho && \
-    useradd  -g pentaho -u 1000 -m pentaho && \
+    # Renombrar el grupo 'ubuntu' (GID 1000) a 'pentaho'
+    groupmod -n pentaho ubuntu && \
+    # Renombrar el usuario 'ubuntu' (UID 1000) a 'pentaho'
+    usermod -l pentaho -d /home/pentaho -m ubuntu && \
     mkdir /opt/scratch && \
     chown pentaho:pentaho /opt/scratch
 

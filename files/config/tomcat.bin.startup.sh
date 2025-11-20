@@ -60,6 +60,9 @@ fi
 # See https://jira.pentaho.com/browse/BISERVER-13354
 # export CATALINA_OPTS="-Djava.awt.headless=true -Xms4096m -Xmx6144m -XX:MaxPermSize=256m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -DDI_HOME=$DI_HOME"
 DI_HOME="${PENTAHO_HOME}/pentaho-solutions/system/kettle"
-export CATALINA_OPTS="-Djava.awt.headless=true -Xms4096m -Xmx6144m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -DDI_HOME=$DI_HOME ${EXTRA_CATALINA_OPTS}"
+# Aceptar tamaños de memoria como variables de entorno - que pueden venir del deployment
+export XMX_MEMORY=${XMX_MEMORY_VALUE:-3500m}
+export XMS_MEMORY=${XMS_MEMORY_VALUE:-2048m}
+export CATALINA_OPTS="-Djava.awt.headless=true -Xms${XMS_MEMORY} -Xmx${XMX_MEMORY} -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -DDI_HOME=$DI_HOME ${EXTRA_CATALINA_OPTS}"
 
 exec "$PRGDIR"/"$EXECUTABLE" run "$@"

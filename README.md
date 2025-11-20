@@ -62,6 +62,10 @@ docker run --rm pentaho-env:latest cat /opt/usage.txt
 
 # Changelog
 
+## 2.0.3
+
+- Soporte para variables de entorno XMX_MEMORY y XMS_MEMORY
+
 ## 2.0.2
 
 - Añadido soporte a _TRUST_USER_ para acceso a CDAs. Ver:
